@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Ma Pharmacie</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="cr_er_votre_compte">Créer votre compte !</string>
+    <string name="enregistrer">Enregistrer</string>
+    <string name="label_moment_prise">Moment de la prise</string>
+    <string-array name="moments_prise">
+        <item>Matin</item>
+        <item>Midi</item>
+        <item>Soir</item>
+    </string-array>
+
+</resources>

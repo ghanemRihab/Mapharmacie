@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <androidx.constraintlayout.widget.ConstraintLayout tools:context=".creationActivity" android:background="@drawable/arriere22" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:layout_height="67dp" android:layout_width="283dp" app:layout_constraintVertical_bias="0.17" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:textStyle="bold" android:textSize="50sp" android:textColor="#4CAF50" android:textAlignment="center" android:text="S'inscrire" android:id="@+id/textViewEng"/>
+
+    <EditText android:background="@drawable/input_background"
+        android:layout_height="66dp"
+        android:layout_width="343dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/editTextPersonNameEng"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEng"
+        android:textColorHint="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:inputType="textPersonName"
+        android:hint="Votre nom"
+        android:ems="10"
+        android:drawableTint="@color/design_default_color_secondary_variant"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/person1"
+        android:layout_marginTop="32dp"/>
+
+    <EditText
+        android:background="@drawable/input_background"
+        android:layout_height="61dp"
+        android:layout_width="350dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/editTextPasswordEng"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        android:textColorHint="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:inputType="textPassword"
+        android:hint="Mot de passe"
+        android:ems="10"
+        android:drawableTint="@color/teal_700"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/ic_lock_lock"
+        android:layout_marginTop="28dp"/>
+
+    <EditText android:background="@drawable/input_background"
+        android:layout_height="64dp"
+        android:layout_width="355dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordEng"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordEng"
+        android:textStyle="bold" android:textColor="@color/black"
+        android:id="@+id/editTextConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordEng"
+        android:textColorHint="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:inputType="textPassword"
+        android:hint="Confirmer votre mot de passe"
+        android:ems="10"
+        android:drawableTint="@color/teal_700"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/ic_lock_lock"
+        android:layout_marginTop="28dp"
+        app:layout_constraintHorizontal_bias="0.0"/>
+
+    <EditText
+        android:background="@drawable/input_background"
+        android:layout_height="70dp" android:layout_width="345dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextPersonNameEng"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPersonNameEng"
+        android:textStyle="bold" android:textColor="@color/black"
+        android:id="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonNameEng"
+        android:textColorHint="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:ems="10"
+        android:drawableTint="@color/design_default_color_secondary_variant"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/sym_action_email"
+        android:layout_marginTop="28dp"/>
+
+    <Button
+        android:background="@drawable/btn_background"
+        android:layout_height="55dp"
+        android:layout_width="248dp"
+        app:layout_constraintStart_toStartOf="@+id/editTextConfirm"
+        app:layout_constraintEnd_toEndOf="@+id/editTextConfirm"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="@string/enregistrer"
+        android:id="@+id/buttonEng"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirm"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints"
+        android:backgroundTint="@color/white"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/buttonEng"
+        app:layout_constraintEnd_toEndOf="@+id/buttonEng"
+        android:textStyle="bold" android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="J'ai déja un compte !"
+        android:id="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEng"
+        android:layout_marginTop="16dp"
+        tools:ignore="HardcodedText"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

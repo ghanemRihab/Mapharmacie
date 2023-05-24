@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Date de prescription -->
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de prescription:"
+                android:textSize="18sp" />
+
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:layout_below="@+id/text_date"
+                android:scrollbarSize="@dimen/material_emphasis_medium" />
+            <!-- médecin -->
+            <TextView
+                android:id="@+id/text_Med"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date_picker"
+                android:layout_marginTop="16dp"
+                android:text="Médecin:"
+                android:textSize="18sp" />
+
+            <!-- Nom du médecin -->
+
+            <!-- Spécialité -->
+            <EditText
+                android:id="@+id/edit_nom_medecin"
+                android:layout_width="383dp"
+                android:layout_height="59dp"
+                android:layout_below="@+id/text_nom_medecin"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:hint="Nom du médecin"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edit_specialite"
+                android:layout_width="385dp"
+                android:layout_height="59dp"
+                android:layout_below="@+id/text_specialite"
+                android:layout_marginTop="8dp"
+                android:autofillHints="Spécialité se médecin"
+                android:hint="Spécialité du médecin"
+                android:inputType="text"
+                tools:ignore="LabelFor" />
+
+            <!-- Adresse -->
+            <EditText
+                android:id="@+id/edit_adresse"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text_adresse"
+                android:layout_marginTop="8dp"
+                android:hint="L'adresse du médecin"
+                android:inputType="text" />
+
+            <!-- Téléphone -->
+            <EditText
+                android:id="@+id/edit_telephone"
+                android:layout_width="377dp"
+                android:layout_height="55dp"
+                android:layout_below="@+id/text_telephone"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:hint="Numéro de télephone du médecin"
+                android:inputType="phone"
+                tools:ignore="LabelFor" />
+
+            <!-- Mail -->
+            <EditText
+                android:id="@+id/edit_mail"
+                android:layout_width="365dp"
+                android:layout_height="61dp"
+                android:layout_below="@+id/text_mail"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:hint="example@gamil.com"
+                tools:ignore="LabelFor" />
+
+            <LinearLayout
+                android:id="@+id/medicamentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- Médicament -->
+                <TextView
+                    android:id="@+id/text_medicament"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/edit_mail"
+                    android:layout_marginTop="16dp"
+                    android:text="Médicaments:"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/nom_medi"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/text_medicament"
+                    android:autofillHints=""
+                    android:hint="Nom"
+                    android:inputType="text"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/edittext_dosage_medicament"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Dosage du médicament"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edittext_fréquence_medicament"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fréquence du médicament"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edittext_nombres_boites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombres de boîtes"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <Spinner
+                    android:id="@+id/spinner_moment_prise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/moments_prise"
+                    android:prompt="@string/label_moment_prise" />
+
+                <Button
+                    android:id="@+id/button_ajouter_medicament"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ajouter médicament" />
+            </LinearLayout>
+            <!-- Image -->
+            <TextView
+                android:id="@+id/text_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/spinner_moment_prise"
+                android:layout_marginTop="16dp"
+                android:text="Perdre l'image de votre ordonnance:"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button_ajouter_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ajouter image" />
+
+            <!-- Boutton pour ajouter et supprimer l'ordonnance -->
+            <Button
+                android:id="@+id/button_ajouter_ordonnance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ajouter" />
+
+            <Button
+                android:id="@+id/button_supprimer_ordonnances"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Supprimer" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
