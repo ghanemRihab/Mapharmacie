@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ajoutmedi"
+    android:background="@drawable/back_blue">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="187dp"
+        android:layout_height="90dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="21dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView4"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/cardView4"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="113dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/images_medi"
+            tools:ignore="MissingConstraints" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="377dp"
+        android:layout_height="444dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/teal_200"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginEnd="30dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="167dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="272dp"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="Nom de medicaments"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="354dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="12dp"
+                android:autofillHints=""
+                android:hint=".........."
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="Quantités (Mes boites)"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="365dp"
+                android:layout_height="57dp"
+                android:layout_marginLeft="12dp"
+                android:hint=".........." />
+
+            <TextView
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="Remarques"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="365dp"
+                android:layout_height="57dp"
+                android:layout_marginLeft="12dp"
+                android:hint="Descriptions ,Eeffets indesirables,conseils" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="350dp"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/button5"
+                android:layout_width="5dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_weight="1"
+                android:background="@drawable/save" />
+
+            <ImageButton
+                android:id="@+id/button6"
+                android:layout_width="10dp"
+                android:layout_height="71dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="14dp"
+                android:layout_weight="1"
+                android:background="@drawable/baseline_change_circle_24" />
+
+
+            <ImageButton
+                android:id="@+id/button7"
+                android:layout_width="5dp"
+                android:layout_height="71dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="28dp"
+                android:layout_weight="1"
+                android:background="@drawable/delete" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
