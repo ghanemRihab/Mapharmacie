@@ -1,11 +1,13 @@
 package com.example.mapharmacie;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -19,10 +21,13 @@ public class ajoutord extends AppCompatActivity {
     Spinner Sp ;
     LinearLayout itemListLayout;
 
+    DatePicker edDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajoutord);
+        edDate=findViewById(R.id.date_picker);
         edMedecin=findViewById(R.id.edit_nom_medecin);
         edSpecialite=findViewById(R.id.edit_specialite);
         edAdress=findViewById(R.id.edit_adresse);
@@ -35,7 +40,7 @@ public class ajoutord extends AppCompatActivity {
         tvdate=findViewById(R.id.text_date);
         tvmedi=findViewById(R.id.text_medicament);
         tvimg=findViewById(R.id.text_image);
-        btn_ajout_medi=findViewById(R.id.button_ajouter_medicament);
+        //btn_ajout_medi=findViewById(R.id.button_ajouter_medicament);
         btn_ajout_img=findViewById(R.id.button_ajouter_image);
         btn_ajout_ord=findViewById(R.id.button_ajouter_ordonnance);
         btn_supp_ord=findViewById(R.id.button_supprimer_ordonnances);
@@ -54,7 +59,7 @@ public class ajoutord extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedMoment = (String) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), " Vous avez sélectionné : " + selectedMoment, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), " Vous avez sélectionné : " + selectedMoment, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -66,24 +71,40 @@ public class ajoutord extends AppCompatActivity {
         btn_ajout_ord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String date = tvdate.getText().toString();
-                String nom_Medecin =  tvmedi.getText().toString();
+
+                String date = String.valueOf(edDate.getDayOfMonth()+edDate.getMonth()+edDate.getYear());
+                String doctor =  edMedecin.getText().toString();
                 String specialite = edSpecialite.getText().toString();
-                String adress =   edAdress.getText().toString();
-                String telephone = edTelephone.getText().toString();
+                String address =   edAdress.getText().toString();
+                String phone = edTelephone.getText().toString();
                 String email =edMail.getText().toString();
-                String nom_Medicament = edmedicament.getText().toString();
-                String dosage_Medicament =  edDosage.getText().toString();
-                String fréquence_Medicament =  edFrequence.getText().toString();
-                int nombres_Boites = Integer.parseInt(edNb_boite.getText().toString());
-                String moment_Prise = Sp.getSelectedItem().toString();
+                String medecin = edmedicament.getText().toString();
+                String dose =  edDosage.getText().toString();
+                String frequence =  edFrequence.getText().toString();
+                int box_numbers = Integer.parseInt(edNb_boite.getText().toString());
+                String take_moment = Sp.getSelectedItem().toString();
                 String image = tvimg.getText().toString();
-                Database database = new Database(ajoutord.this);
-              //  database.ajouterOrdonnance(tvdate.getText().toString().trim(),tvmedi.getText().toString().trim(),edSpecialite.getText().toString().trim(),edAdress.getText().toString().trim(),edTelephone.getText().toString().trim(),edMail.getText().toString().trim(),edmedicament.getText().toString().trim(),edDosage.getText().toString().trim(),edFrequence.getText().toString().trim(),Integer.parseInt(edNb_boite.getText().toString().trim()), Sp.getSelectedItem().toString().trim(), tvimg.getText().toString().trim());
+                Database db = new Database(ajoutord.this);
+
+                if (
+                    (date.isEmpty() && date.length() == 0) ||
+                    (doctor.isEmpty() && doctor.length()== 0) ||
+                    (specialite.isEmpty() && specialite.length() == 0) ||
+                    (address.isEmpty() && address.length() == 0) ||
+                    (phone.isEmpty() && phone.length() == 0) ||
+                    (email.isEmpty() && email.length() == 0) ||
+                    (medecin.isEmpty() && medecin.length() == 0) ||
+                    (dose.isEmpty() && dose.length() == 0) ||
+                    (frequence.isEmpty() && frequence.length() == 0) ||
+                    (take_moment.isEmpty() && take_moment.length() == 0))
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir les champs", Toast.LENGTH_LONG).show();
+                }else{
+                    db.addOrdonnace(date, doctor, specialite, address, phone, email, medecin, dose,frequence, String.valueOf(box_numbers),take_moment, image);
+                    startActivity(new Intent(ajoutord.this, Medicament.class));
+                }
             }
-
         });
-
     }
 
     @SuppressLint("SetTextI18n")

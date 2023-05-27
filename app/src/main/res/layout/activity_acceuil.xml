@@ -16,12 +16,12 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:drawableLeft="@drawable/accueil"
         android:drawablePadding="10dp"
         android:text="Accueil"
         android:textColor="@color/white"
         android:textSize="34sp"
-        android:textStyle="bold"
-        android:drawableLeft="@drawable/accueil" />
+        android:textStyle="bold" />
 
 
     <GridLayout
@@ -37,8 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:layout_column="0"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
@@ -61,10 +61,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes ordonnances"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -75,14 +75,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:layout_column="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -100,27 +99,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes médicaments"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_notes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="0"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -138,10 +137,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes notes"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -153,14 +152,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -178,16 +176,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes rendez-vous"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
-
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
-
-
 
 
         </androidx.cardview.widget.CardView>
@@ -197,14 +192,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
-            android:layout_column="0"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -222,29 +216,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes dons"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
-
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_deconnexion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
-            android:layout_column="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -262,10 +255,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Déconnexion"
-                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:textColor="@color/teal_700"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>

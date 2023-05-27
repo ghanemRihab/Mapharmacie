@@ -156,13 +156,13 @@
                     android:entries="@array/moments_prise"
                     android:prompt="@string/label_moment_prise" />
 
-                <Button
-                    android:id="@+id/button_ajouter_medicament"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ajouter médicament" />
-            </LinearLayout>
-            <!-- Image -->
+                <!-- <Button
+                     android:id="@+id/button_ajouter_medicament"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Ajouter médicament" /> -->
+             </LinearLayout>
+             <!-- Image -->
             <TextView
                 android:id="@+id/text_image"
                 android:layout_width="match_parent"

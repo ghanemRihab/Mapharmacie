@@ -29,35 +29,35 @@ public class acceuil extends AppCompatActivity {
             }
         });
         CardView med = findViewById(R.id.card_medi);
-        ord.setOnClickListener(new View.OnClickListener() {
+        med.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(acceuil.this,MedicamentActivity.class));
             }
         });
         CardView note = findViewById(R.id.card_notes);
-        ord.setOnClickListener(new View.OnClickListener() {
+        note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(acceuil.this,NoteActivity.class));
             }
         });
         CardView pharma = findViewById(R.id.card_plan);
-        ord.setOnClickListener(new View.OnClickListener() {
+        pharma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(acceuil.this,PlanActivity.class));
             }
         });
         CardView plan = findViewById(R.id.card_don);
-        ord.setOnClickListener(new View.OnClickListener() {
+        plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(acceuil.this,DonActivity.class));
             }
         });
         CardView don = findViewById(R.id.card_deconnexion);
-        ord.setOnClickListener(new View.OnClickListener() {
+        don.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(acceuil.this,DonActivity.class));
