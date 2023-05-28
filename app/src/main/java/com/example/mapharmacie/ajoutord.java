@@ -72,7 +72,7 @@ public class ajoutord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String date = String.valueOf(edDate.getDayOfMonth()+edDate.getMonth()+edDate.getYear());
+                int date = edDate.getDayOfMonth()+edDate.getMonth()+edDate.getYear();
                 String doctor =  edMedecin.getText().toString();
                 String specialite = edSpecialite.getText().toString();
                 String address =   edAdress.getText().toString();
@@ -87,7 +87,6 @@ public class ajoutord extends AppCompatActivity {
                 Database db = new Database(ajoutord.this);
 
                 if (
-                    (date.isEmpty() && date.length() == 0) ||
                     (doctor.isEmpty() && doctor.length()== 0) ||
                     (specialite.isEmpty() && specialite.length() == 0) ||
                     (address.isEmpty() && address.length() == 0) ||
@@ -101,7 +100,7 @@ public class ajoutord extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Veuillez remplir les champs", Toast.LENGTH_LONG).show();
                 }else{
                     db.addOrdonnace(date, doctor, specialite, address, phone, email, medecin, dose,frequence, String.valueOf(box_numbers),take_moment, image);
-                    startActivity(new Intent(ajoutord.this, Medicament.class));
+                    startActivity(new Intent(ajoutord.this, List_ordActivity.class));
                 }
             }
         });
