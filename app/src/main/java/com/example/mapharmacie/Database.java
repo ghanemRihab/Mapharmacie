@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Database extends SQLiteOpenHelper {
     private Context context;
 
@@ -84,7 +87,6 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_SPE = "specialite";
     private static final String COLUMN_DOCTOR_NUMBER = "telephone";
     private static final String COLUMN_ID_ORDONNACE = "id";
-
 
 
     public Database(Context context) {
@@ -233,7 +235,26 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<MedicamentModal> getMedicamentData() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_MEDICAMENT, null);
+        ArrayList<MedicamentModal> medicaments = new ArrayList<>();
 
-
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_MEDICAMENT));
+                @SuppressLint("Range") String nom = cursor.getString(cursor.getColumnIndex(COLUMN_NOM));
+                @SuppressLint("Range") String dose = cursor.getString(cursor.getColumnIndex(COLUMN_DOSE));
+                @SuppressLint("Range") int nbPrise = cursor.getInt(cursor.getColumnIndex(COLUMN_NB_PRISE));
+                @SuppressLint("Range") String traitement = cursor.getString(cursor.getColumnIndex(COLUMN_TRAITEMENT));
+                @SuppressLint("Range") int quantite = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITE));
+                @SuppressLint("Range") String tempsPrise = cursor.getString(cursor.getColumnIndex(COLUMN_TEMPS_PRISE));
+                MedicamentModal medicament = new MedicamentModal(nom, dose, nbPrise, traitement, quantite, tempsPrise);
+                medicaments.add(medicament);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return medicaments;
+    }
 
 }

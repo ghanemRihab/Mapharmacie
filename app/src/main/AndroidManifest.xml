@@ -16,6 +16,9 @@
             android:name=".ListplanActivity"
             android:exported="false" />
         <activity
+            android:name=".ListMedicamentActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
         <activity

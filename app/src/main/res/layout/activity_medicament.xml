@@ -16,14 +16,17 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
+
     <ImageView
-        android:layout_below="@+id/TV"
+        android:id="@+id/imgmed"
         android:layout_width="300dp"
         android:layout_height="250dp"
-        android:src="@drawable/medi"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/TV"
         android:layout_margin="10dp"
-        android:id="@+id/imgmed"/>
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/medi" />
+
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="wrap_content"

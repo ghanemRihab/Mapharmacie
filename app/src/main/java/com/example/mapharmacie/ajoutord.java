@@ -100,7 +100,7 @@ public class ajoutord extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Veuillez remplir les champs", Toast.LENGTH_LONG).show();
                 }else{
                     db.addOrdonnace(date, doctor, specialite, address, phone, email, medecin, dose,frequence, String.valueOf(box_numbers),take_moment, image);
-                    startActivity(new Intent(ajoutord.this, List_ordActivity.class));
+                    startActivity(new Intent(ajoutord.this, Medicament.class));
                 }
             }
         });

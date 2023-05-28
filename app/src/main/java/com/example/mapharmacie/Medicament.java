@@ -1,6 +1,7 @@
 package com.example.mapharmacie;
 
-public class Medicament {private int id;
+public class Medicament {
+    private int id;
     private String nom;
     private String dosage;
     private String frequence;
@@ -14,6 +15,9 @@ public class Medicament {private int id;
         this.frequence = frequence;
         this.nombresBoites = nombresBoites;
         this.momentPrise = momentPrise;
+    }
+
+    public Medicament(int id, String nom, String dose, int nbPrise, String traitement, int quantite, String tempsPrise) {
     }
 
     // Getter et Setter pour l'ID
@@ -68,6 +72,10 @@ public class Medicament {private int id;
 
     public void setMomentPrise(String momentPrise) {
         this.momentPrise = momentPrise;
+    }
+
+    public String getDose() {
+        return null;
     }
 }
 

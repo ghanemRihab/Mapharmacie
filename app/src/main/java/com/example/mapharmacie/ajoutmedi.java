@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class ajoutmedi extends AppCompatActivity {
     Spinner Sp;
     EditText nom_medicament, dosage, nbr_prise, traitement, quantite;
-    Button btn;
+    Button btn, btn1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +31,7 @@ public class ajoutmedi extends AppCompatActivity {
         quantite = findViewById(R.id.quantite);
         Sp = findViewById(R.id.spinner_moment_prise2);
         btn = findViewById(R.id.ajoutMed);
+        btn1 = findViewById(R.id.consultMed);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.moments_prise, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,8 +70,15 @@ public class ajoutmedi extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Veuillez remplir les champs", Toast.LENGTH_LONG).show();
                 } else {
                     db.addMedicament(name, dose, prise, trait, box_numbers, take_moment);
-                    startActivity(new Intent(ajoutmedi.this, List_ordActivity.class));
+                    Toast.makeText(getApplicationContext(), "Medicament ajouté avec succès", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ajoutmedi.this, ListMedicamentActivity.class));
             }
         });
     }
