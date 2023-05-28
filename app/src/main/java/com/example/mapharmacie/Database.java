@@ -49,6 +49,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String TABLE_NOTE = "Notes";
     private static final String COLUMN_ID_NOTE = "id";
     private static final String COLUMN_DESCRIPTION = "description";
+    private static final String COLUMN_ADVICE = "conseil";
     private static final String COLUMN_EFFETS = "effect";
     private static final String COLUMN_REMARQUES = "remarques";
 
@@ -99,7 +100,7 @@ public class Database extends SQLiteOpenHelper {
         String query2 = "CREATE TABLE " + TABLE_DONS + " (" + COLUMN_ID_DONS + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_QUANTITES + " TEXT, " + COLUMN_NOM_DONS + " TEXT, " + COLUMN_DATE_EXPIRARTION + " TEXT," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
         sqLiteDatabase.execSQL(query2);
 
-        String query3 = "CREATE TABLE " + TABLE_NOTE + " (" + COLUMN_ID_NOTE + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_EFFETS + " TEXT, " + COLUMN_REMARQUES + " TEXT, " + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
+        String query3 = "CREATE TABLE " + TABLE_NOTE + " (" + COLUMN_ID_NOTE + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_ADVICE + " TEXT, " + COLUMN_EFFETS + " TEXT, " + COLUMN_REMARQUES + " TEXT, " + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
         sqLiteDatabase.execSQL(query3);
 
         String query4 = "CREATE TABLE " + TABLE_RAPPEL + " (" + COLUMN_ID_RAPPEL + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HEURE + " TEXT, " + COLUMN_MINUTE + " TEXT, " + COLUMN_JOUR + " TEXT, " + COLUMN_NOMBRE_REP + " TEXT, " + COLUMN_MEDICAMENT_ID + " INTEGER," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
@@ -189,6 +190,25 @@ public class Database extends SQLiteOpenHelper {
             Toast.makeText(context, "Ordonnance ajoutée avec succès !", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    void addNote(String descriptions, String conseils, String effets_secon, String remarques,  int medicamentId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_DESCRIPTION, descriptions);
+        cv.put(COLUMN_ADVICE, conseils);
+        cv.put(COLUMN_EFFETS, effets_secon);
+        cv.put(COLUMN_REMARQUES, remarques);
+        cv.put(COLUMN_MEDICAMENT_ID, medicamentId);
+        long result = sqLiteDatabase.insert(TABLE_NOTE, null, cv);
+        if (result == -1) {
+            Toast.makeText(context, "Echec dans l'enregistrement de données", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Note ajoutée avec succès !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 }
