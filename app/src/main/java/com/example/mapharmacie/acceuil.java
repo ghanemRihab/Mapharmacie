@@ -32,7 +32,7 @@ public class acceuil extends AppCompatActivity {
         med.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(acceuil.this,MedicamentActivity.class));
+                startActivity(new Intent(acceuil.this,ajoutmedi.class));
             }
         });
         CardView note = findViewById(R.id.card_notes);

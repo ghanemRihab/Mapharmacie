@@ -44,6 +44,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_NOM_DONS = "name_dons";
     private static final String COLUMN_QUANTITES = "quantity";
     private static final String COLUMN_DATE_EXPIRARTION = "expriration_date";
+    private static final String COLUMN_MEDICAMENT_ID_DONS = "id";
+
 
     //TABLE NOTES
     private static final String TABLE_NOTE = "Notes";
@@ -52,6 +54,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_ADVICE = "conseil";
     private static final String COLUMN_EFFETS = "effect";
     private static final String COLUMN_REMARQUES = "remarques";
+    private static final String COLUMN_MEDICAMENT_ID_NOTE = "id";
+
 
     //TABLE RAPPELS
     private static final String TABLE_RAPPEL = "rappels";
@@ -60,7 +64,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_MINUTE = "minute";
     private static final String COLUMN_JOUR = "day";
     private static final String COLUMN_NOMBRE_REP = "rep_number";
-    private static final String COLUMN_MEDICAMENT_ID = "id";
+    private static final String COLUMN_MEDICAMENT_ID_RAPPEL = "id";
+
 
     //TABLE MEDICAMENTS
     private static final String TABLE_MEDICAMENT = "medicaments";
@@ -81,6 +86,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_ID_ORDONNACE = "id";
 
 
+
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -97,19 +103,19 @@ public class Database extends SQLiteOpenHelper {
         String query1 = "CREATE TABLE " + TABLE_ORDONNANCE + " (" + COLUMN_ID_ORD + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DATE + " TEXT, " + COLUMN_NOM_MEDE + " TEXT, " + COLUMN_SPECIALITE + " TEXT, " + COLUMN_ADDRESS + " TEXT, " + COLUMN_TELEPHONE + " TEXT, " + COLUMN_MAIL + " TEXT, " + COLUMN_NOM_MEDI + " TEXT, " + COLUMN_DOSAGE + " TEXT, " + COLUMN_FREQUENCE + " TEXT, " + COLUMN_NOMBRES_BOITES + " TEXT, " + COLUMN_MOMENT_PRISE + " TEXT, " + COLUMN_IMAGE + " TEXT);";
         sqLiteDatabase.execSQL(query1);
 
-        String query2 = "CREATE TABLE " + TABLE_DONS + " (" + COLUMN_ID_DONS + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_QUANTITES + " TEXT, " + COLUMN_NOM_DONS + " TEXT, " + COLUMN_DATE_EXPIRARTION + " TEXT," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
+        String query2 = "CREATE TABLE " + TABLE_DONS + " (" + COLUMN_ID_DONS + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_QUANTITES + " TEXT, " + COLUMN_NOM_DONS + " TEXT, " + COLUMN_DATE_EXPIRARTION + " TEXT," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID_DONS + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
         sqLiteDatabase.execSQL(query2);
 
-        String query3 = "CREATE TABLE " + TABLE_NOTE + " (" + COLUMN_ID_NOTE + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_ADVICE + " TEXT, " + COLUMN_EFFETS + " TEXT, " + COLUMN_REMARQUES + " TEXT, " + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
+        String query3 = "CREATE TABLE " + TABLE_NOTE + " (" + COLUMN_ID_NOTE + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_ADVICE + " TEXT, " + COLUMN_EFFETS + " TEXT, " + COLUMN_REMARQUES + " TEXT, " + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID_NOTE + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
         sqLiteDatabase.execSQL(query3);
 
-        String query4 = "CREATE TABLE " + TABLE_RAPPEL + " (" + COLUMN_ID_RAPPEL + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HEURE + " TEXT, " + COLUMN_MINUTE + " TEXT, " + COLUMN_JOUR + " TEXT, " + COLUMN_NOMBRE_REP + " TEXT, " + COLUMN_MEDICAMENT_ID + " INTEGER," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
+        String query4 = "CREATE TABLE " + TABLE_RAPPEL + " (" + COLUMN_ID_RAPPEL + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HEURE + " TEXT, " + COLUMN_MINUTE + " TEXT, " + COLUMN_JOUR + " TEXT, " + COLUMN_NOMBRE_REP + " TEXT, "  + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID_RAPPEL + ") REFERENCES " + TABLE_MEDICAMENT + "(" + COLUMN_ID_MEDICAMENT + ")" +");";
         sqLiteDatabase.execSQL(query4);
 
-        String query5 = "CREATE TABLE " + TABLE_MEDICAMENT + " (" + COLUMN_ID_MEDICAMENT + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NOM + " TEXT, " + COLUMN_DOSE + " TEXT, " +  COLUMN_NB_PRISE + " TEXT, " + COLUMN_TRAITEMENT + " TEXT, " + COLUMN_QUANTITE + " TEXT, " + COLUMN_TEMPS_PRISE + " TEXT);";
+        String query5 = "CREATE TABLE " + TABLE_MEDICAMENT + " (" + COLUMN_ID_MEDICAMENT + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NOM + " TEXT, " + COLUMN_DOSE + " TEXT, " +  COLUMN_NB_PRISE + " INTEGER, " + COLUMN_TRAITEMENT + " TEXT, " + COLUMN_QUANTITE + " INTEGER, " + COLUMN_TEMPS_PRISE + " TEXT);";
         sqLiteDatabase.execSQL(query5);
 
-        String query6 = "CREATE TABLE " + TABLE_DOCTORS + " (" + COLUMN_ID_DOCTOR + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DOCTOR_NAME + " TEXT, " + COLUMN_SPE + " TEXT, " + COLUMN_DOCTOR_NUMBER + " TEXT, " + COLUMN_ID_ORDONNACE + " INTEGER," + "FOREIGN KEY (" + COLUMN_MEDICAMENT_ID + ") REFERENCES " + TABLE_ORDONNANCE + "(" + COLUMN_ID_ORD + ")" +");";
+        String query6 = "CREATE TABLE " + TABLE_DOCTORS + " (" + COLUMN_ID_DOCTOR + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DOCTOR_NAME + " TEXT, " + COLUMN_SPE + " TEXT, " + COLUMN_DOCTOR_NUMBER + " TEXT, " + "FOREIGN KEY (" + COLUMN_ID_ORDONNACE + ") REFERENCES " + TABLE_ORDONNANCE + "(" + COLUMN_ID_ORD + ")" +");";
         sqLiteDatabase.execSQL(query6);
 
     }
@@ -191,7 +197,6 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-
     void addNote(String descriptions, String conseils, String effets_secon, String remarques,  int medicamentId) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -200,7 +205,7 @@ public class Database extends SQLiteOpenHelper {
         cv.put(COLUMN_ADVICE, conseils);
         cv.put(COLUMN_EFFETS, effets_secon);
         cv.put(COLUMN_REMARQUES, remarques);
-        cv.put(COLUMN_MEDICAMENT_ID, medicamentId);
+        cv.put(COLUMN_MEDICAMENT_ID_NOTE, medicamentId);
         long result = sqLiteDatabase.insert(TABLE_NOTE, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Echec dans l'enregistrement de données", Toast.LENGTH_SHORT).show();
@@ -208,6 +213,26 @@ public class Database extends SQLiteOpenHelper {
             Toast.makeText(context, "Note ajoutée avec succès !", Toast.LENGTH_SHORT).show();
         }
     }
+
+    void addMedicament(String nom, String dose, int nb_prise, String traitment,  int quantity, String time_prise) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_NOM, nom);
+        cv.put(COLUMN_DOSE, dose);
+        cv.put(COLUMN_NB_PRISE, nb_prise);
+        cv.put(COLUMN_TRAITEMENT, traitment);
+        cv.put(COLUMN_QUANTITE, quantity);
+        cv.put(COLUMN_TEMPS_PRISE, time_prise);
+
+        long result = sqLiteDatabase.insert(TABLE_MEDICAMENT, null, cv);
+        if (result == -1) {
+            Toast.makeText(context, "result" +result, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "LE médicament a été  ajoutée avec succès !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 
