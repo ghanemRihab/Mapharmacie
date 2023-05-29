@@ -78,7 +78,15 @@ public class ajoutmedi extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ajoutmedi.this, ListMedicamentActivity.class));
+                Intent i =new Intent(ajoutmedi.this,ListMedicamentActivity.class);
+
+                i.putExtra("nom",nom_medicament.getText().toString());
+                i.putExtra("dosage",dosage.getText().toString());
+                i.putExtra("nbr",nbr_prise.getText().toString());
+                i.putExtra("traitement",traitement.getText().toString());
+                i.putExtra("quantite",quantite.getText().toString());
+                startActivity(i);
+
             }
         });
     }
