@@ -180,6 +180,12 @@
                 android:layout_height="wrap_content"
                 android:text="Ajouter image" />
 
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_ajouter_image" />
+
             <!-- Boutton pour ajouter et supprimer l'ordonnance -->
             <Button
                 android:id="@+id/button_ajouter_ordonnance"

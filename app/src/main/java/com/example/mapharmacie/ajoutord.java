@@ -1,51 +1,74 @@
 package com.example.mapharmacie;
 
 import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import java.io.IOException;
+
 public class ajoutord extends AppCompatActivity {
-    EditText edMedecin , edSpecialite , edAdress , edTelephone , edMail, edmedicament, edDosage,edFrequence ,edNb_boite ;
-    TextView tvdate,tvmedi ,tvimg ;
-    Button  btn_ajout_medi,btn_ajout_img, btn_ajout_ord,btn_supp_ord;
-    Spinner Sp ;
+    private static final int REQUEST_CAMERA_PERMISSION = 200;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_GALLERY = 2;
+
+    ImageView imageView;
+
+    EditText edMedecin, edSpecialite, edAdress, edTelephone, edMail, edmedicament, edDosage, edFrequence, edNb_boite;
+    TextView tvdate, tvmedi, tvimg;
+    Button btn_ajout_medi, btn_ajout_img, btn_ajout_ord, btn_supp_ord;
+    Spinner Sp;
     LinearLayout itemListLayout;
 
     DatePicker edDate;
 
+    Bitmap imageBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajoutord);
-        edDate=findViewById(R.id.date_picker);
-        edMedecin=findViewById(R.id.edit_nom_medecin);
-        edSpecialite=findViewById(R.id.edit_specialite);
-        edAdress=findViewById(R.id.edit_adresse);
-        edTelephone=findViewById(R.id.edit_telephone);
-        edMail=findViewById(R.id.edit_mail);
-        edmedicament=findViewById(R.id.nom_medi);
-        edDosage=findViewById(R.id.edittext_dosage_medicament);
-        edFrequence=findViewById(R.id.edittext_fréquence_medicament);
-        edNb_boite=findViewById(R.id.edittext_nombres_boites);
-        tvdate=findViewById(R.id.text_date);
-        tvmedi=findViewById(R.id.text_medicament);
-        tvimg=findViewById(R.id.text_image);
+        edDate = findViewById(R.id.date_picker);
+        edMedecin = findViewById(R.id.edit_nom_medecin);
+        edSpecialite = findViewById(R.id.edit_specialite);
+        edAdress = findViewById(R.id.edit_adresse);
+        edTelephone = findViewById(R.id.edit_telephone);
+        edMail = findViewById(R.id.edit_mail);
+        edmedicament = findViewById(R.id.nom_medi);
+        edDosage = findViewById(R.id.edittext_dosage_medicament);
+        edFrequence = findViewById(R.id.edittext_fréquence_medicament);
+        edNb_boite = findViewById(R.id.edittext_nombres_boites);
+        tvdate = findViewById(R.id.text_date);
+        tvmedi = findViewById(R.id.text_medicament);
+        tvimg = findViewById(R.id.text_image);
         //btn_ajout_medi=findViewById(R.id.button_ajouter_medicament);
-        btn_ajout_img=findViewById(R.id.button_ajouter_image);
-        btn_ajout_ord=findViewById(R.id.button_ajouter_ordonnance);
-        btn_supp_ord=findViewById(R.id.button_supprimer_ordonnances);
-        Sp=findViewById(R.id.spinner_moment_prise);
+        btn_ajout_img = findViewById(R.id.button_ajouter_image);
+        imageView = findViewById(R.id.image_view);
+        imageView.setImageBitmap(imageBitmap);
+
+        btn_ajout_ord = findViewById(R.id.button_ajouter_ordonnance);
+        btn_supp_ord = findViewById(R.id.button_supprimer_ordonnances);
+        Sp = findViewById(R.id.spinner_moment_prise);
         itemListLayout = findViewById(R.id.medicamentLayout);
+
 
         // Définition des options du Spinner en utilisant les ressources XML
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.moments_prise, android.R.layout.simple_spinner_item);
@@ -61,50 +84,102 @@ public class ajoutord extends AppCompatActivity {
                 String selectedMoment = (String) parent.getItemAtPosition(position);
                 //Toast.makeText(getApplicationContext(), " Vous avez sélectionné : " + selectedMoment, Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(ajoutord.this, "Aucun élément sélectionné", Toast.LENGTH_SHORT).show();
             }
         });
 
-
         btn_ajout_ord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int date = edDate.getDayOfMonth()+edDate.getMonth()+edDate.getYear();
-                String doctor =  edMedecin.getText().toString();
+                int date = edDate.getDayOfMonth() + edDate.getMonth() + edDate.getYear();
+                String doctor = edMedecin.getText().toString();
                 String specialite = edSpecialite.getText().toString();
-                String address =   edAdress.getText().toString();
+                String address = edAdress.getText().toString();
                 String phone = edTelephone.getText().toString();
-                String email =edMail.getText().toString();
+                String email = edMail.getText().toString();
                 String medecin = edmedicament.getText().toString();
-                String dose =  edDosage.getText().toString();
-                String frequence =  edFrequence.getText().toString();
+                String dose = edDosage.getText().toString();
+                String frequence = edFrequence.getText().toString();
                 int box_numbers = Integer.parseInt(edNb_boite.getText().toString());
                 String take_moment = Sp.getSelectedItem().toString();
+
+                // String imagePath = saveImageToFile(Bitmap imageBitmap);//
                 String image = tvimg.getText().toString();
                 Database db = new Database(ajoutord.this);
 
                 if (
-                    (doctor.isEmpty() && doctor.length()== 0) ||
-                    (specialite.isEmpty() && specialite.length() == 0) ||
-                    (address.isEmpty() && address.length() == 0) ||
-                    (phone.isEmpty() && phone.length() == 0) ||
-                    (email.isEmpty() && email.length() == 0) ||
-                    (medecin.isEmpty() && medecin.length() == 0) ||
-                    (dose.isEmpty() && dose.length() == 0) ||
-                    (frequence.isEmpty() && frequence.length() == 0) ||
-                    (take_moment.isEmpty() && take_moment.length() == 0))
-                {
+                        (doctor.isEmpty() && doctor.length() == 0) ||
+                                (specialite.isEmpty() && specialite.length() == 0) ||
+                                (address.isEmpty() && address.length() == 0) ||
+                                (phone.isEmpty() && phone.length() == 0) ||
+                                (email.isEmpty() && email.length() == 0) ||
+                                (medecin.isEmpty() && medecin.length() == 0) ||
+                                (dose.isEmpty() && dose.length() == 0) ||
+                                (frequence.isEmpty() && frequence.length() == 0) ||
+                                (take_moment.isEmpty() && take_moment.length() == 0)) {
                     Toast.makeText(getApplicationContext(), "Veuillez remplir les champs", Toast.LENGTH_LONG).show();
-                }else{
-                    db.addOrdonnace(date, doctor, specialite, address, phone, email, medecin, dose,frequence, String.valueOf(box_numbers),take_moment, image);
+                } else {
+                    db.addOrdonnace(date, doctor, specialite, address, phone, email, medecin, dose, frequence, String.valueOf(box_numbers), take_moment, image);
                     startActivity(new Intent(ajoutord.this, Medicament.class));
                 }
             }
         });
+        btn_ajout_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(ajoutord.this, Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ajoutord.this,
+                            new String[]{Manifest.permission.CAMERA},
+                            REQUEST_CAMERA_PERMISSION);
+                } else {
+                    openCamera();
+                }
+            }
+        });
     }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_IMAGE_GALLERY);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                // Image captured using the camera
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                imageView.setImageBitmap(imageBitmap); // Set the captured image to the ImageView
+            } else if (requestCode == REQUEST_IMAGE_GALLERY && data != null) {
+                // Image selected from gallery
+                Uri imageUri = data.getData();
+                try {
+                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    imageView.setImageBitmap(imageBitmap); // Set the selected image to the ImageView
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
 
     @SuppressLint("SetTextI18n")
     private void ajouterMedicament() {
@@ -119,3 +194,4 @@ public class ajoutord extends AppCompatActivity {
         itemListLayout.addView(medicamentView);
     }
 }
+
